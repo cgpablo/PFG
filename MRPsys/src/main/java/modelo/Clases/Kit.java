@@ -19,10 +19,10 @@ public class Kit implements Serializable {
 	private String refProd;
 	@Column(name="udProductoRequeridas")
 	private int udProd;
-	@Column(name="referenciaMaterial")
-	private String refMat;
-	@Column(name="udMaterialRequeridas")
-	private int udMat;	
+//	@Column(name="referenciaMaterial")
+//	private String refMat;
+//	@Column(name="udMaterialRequeridas")
+//	private int udMat;	
 	/**
 	 * 
 	 */
@@ -31,12 +31,12 @@ public class Kit implements Serializable {
 		
 	}
 
-	public Kit(String referenciaKit,String refProd, int udProd, String refMat, int udMat) {
+	public Kit(String referenciaKit,String refProd, int udProd) {
 		this.referencia=referenciaKit;
 		this.refProd=refProd;
 		this.udProd=udProd;
-		this.refMat=refMat;
-		this.udMat=udMat;
+//		this.refMat=refMat;
+//		this.udMat=udMat;
 	}
 	
 	public String getReferencia() {
@@ -63,21 +63,21 @@ public class Kit implements Serializable {
 		this.udProd = udProd;
 	}
 
-	public String getRefMat() {
-		return refMat;
-	}
-
-	public void setRefMat(String refMat) {
-		this.refMat = refMat;
-	}
-
-	public int getUdMat() {
-		return udMat;
-	}
-
-	public void setUdMat(int udMat) {
-		this.udMat = udMat;
-	}
+//	public String getRefMat() {
+//		return refMat;
+//	}
+//
+//	public void setRefMat(String refMat) {
+//		this.refMat = refMat;
+//	}
+//
+//	public int getUdMat() {
+//		return udMat;
+//	}
+//
+//	public void setUdMat(int udMat) {
+//		this.udMat = udMat;
+//	}
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;

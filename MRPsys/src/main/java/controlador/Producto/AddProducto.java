@@ -61,7 +61,7 @@ public class AddProducto extends HttpServlet {
 			} else {
 				mensaje = ApplicationService.getInstance().existeProductoException();
 				request.getSession().setAttribute("mensaje", mensaje);
-				request.getRequestDispatcher("/pages/addProducto.jsp").forward(request, response);
+				request.getRequestDispatcher("/pages/addProduct.jsp").forward(request, response);
 			}
 		}
 	}

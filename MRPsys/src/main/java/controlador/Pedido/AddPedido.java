@@ -53,7 +53,7 @@ public class AddPedido extends HttpServlet {
 			} else {
 				mensaje = ApplicationService.getInstance().existeMaterialException();
 				request.getSession().setAttribute("mensaje", mensaje);
-				request.getRequestDispatcher("/pages/addPedido.jsp").forward(request, response);
+				request.getRequestDispatcher("/pages/LoadAddPedido").forward(request, response);
 			}
 		}
 	}

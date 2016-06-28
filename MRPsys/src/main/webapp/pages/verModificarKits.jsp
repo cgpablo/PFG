@@ -39,8 +39,6 @@
                                     <th>Referencia Kit</th>
                                     <th>Referencia Producto</th>
                                     <th>Uds Producto Requeridas</th>
-                                    <th>Referencia Material</th>
-                                    <th>Uds Material Requeridas</th>
                                     <th>Acción</th>
                                  </tr>
                               </thead>
@@ -55,8 +53,6 @@
                                     <td><%=k.getReferencia() %></td>
                                     <td><%=k.getRefProd() %></td>
                                     <td><%=k.getUdProd()%></td>
-                                    <td><%=k.getRefMat() %></td>
-                                    <td><%=k.getUdMat()%></td>
                                     <td>
 										<form method="POST" action="${pageContext.request.contextPath}/pages/LoadAddModificarKit">
 											<input type="hidden" name="referencia" value="<%=k.getReferencia() %>">

@@ -37,10 +37,11 @@ public class LoadAddModificarKit extends HttpServlet {
 		referencia = request.getParameter("referencia");
 		Kit kit = ApplicationService.getInstance().getKit(referencia);
 		request.setAttribute("kit", kit);
-		List <Producto> productos = ApplicationService.getInstance().getProductos();
+//		List <Producto> productos = ApplicationService.getInstance().getProductos();
+		List <String> productos = ApplicationService.getInstance().getListaEleccionKit();
 		request.setAttribute("productos", productos);
-		List <Material> materiales = ApplicationService.getInstance().getMateriales();
-		request.setAttribute("materiales", materiales);
+//		List <Material> materiales = ApplicationService.getInstance().getMateriales();
+//		request.setAttribute("materiales", materiales);
 		request.getRequestDispatcher("/pages/ModificarKit.jsp").forward(request, response);
 	}
 

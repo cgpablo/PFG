@@ -1,15 +1,11 @@
 package modelo.Negocio;
 
-import modelo.Datos.*;
-
+import modelo.Datos.Connect;
 import java.util.List;
-
 import modelo.Clases.*;
 
 
 public class GestorProducto {
-	
-	Connect con = new Connect();
 	
 	public void addProducto(String referencia, String nombre, String idioma, String elemento, String production,
 			String seguridad, String virtual) {
@@ -20,7 +16,7 @@ public class GestorProducto {
 		if (existsProducto(referencia) == false) {
 			Producto p = new Producto(referencia, nombre, idioma, elemento, productionTime, stockReal, stockSeguridad,
 					stockVirtual);
-			con.getIDao().añadirProducto(p);
+			Connect.getIDao().añadirProducto(p);
 		} else {
 			existeProductoException();
 		}
@@ -28,18 +24,18 @@ public class GestorProducto {
 	
 	public boolean existsProducto(String referencia) {
 		boolean existe;
-		existe = con.getIDao().existsProducto(referencia);
+		existe = Connect.getIDao().existsProducto(referencia);
 		return existe;
 	}
 	
 	public Producto getProducto(String referencia) {
-		Producto p = con.getIDao().getProducto(referencia);
+		Producto p = Connect.getIDao().getProducto(referencia);
 		return p;
 	}
 	
 	public void borrarProducto(String referencia) {
 		Producto p = getProducto(referencia);
-		con.getIDao().borrarProducto(p);
+		Connect.getIDao().borrarProducto(p);
 	}
 	
 	public void modificarProducto(String referencia, String nombre, String idioma, String elemento, String production,
@@ -55,11 +51,11 @@ public class GestorProducto {
 		p.setSeguridad(stockSeguridad);
 		p.setVirtual(stockVirtual);
 		p.setReal(calcularStockReal(stockSeguridad, stockVirtual));
-		con.getIDao().modificarProducto(p);
+		Connect.getIDao().modificarProducto(p);
 	}
 	
 	public List<Producto> getProductos() {
-		List <Producto> lista = con.getIDao().getProductos();
+		List <Producto> lista = Connect.getIDao().getProductos();
 		return lista;
 	}
 	

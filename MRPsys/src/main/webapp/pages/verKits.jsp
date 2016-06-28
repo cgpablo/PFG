@@ -29,7 +29,7 @@
                <!-- /.col-lg-6 -->
                <div class="col-lg-6" style="width:832px;">
                   <div class="panel panel-default" style="width:832px;">
-                     <div class="panel-heading" style="width:830px;">Lista de materiales</div>
+                     <div class="panel-heading" style="width:830px;">Lista de kits</div>
                      <!-- /.panel-heading -->
                      <div class="panel-body" style="width:832px;">
                         <div class="table-responsive table-bordered" style="width:800px;">
@@ -38,9 +38,7 @@
                                  <tr>
                                     <th>Referencia Kit</th>
                                     <th>Referencia Producto</th>
-                                    <th>Uds Producto Requeridas</th>
-                                    <th>Referencia Material</th>
-                                    <th>Uds Material Requeridas</th>
+                                    <th>Uds Requeridas</th>
                                  </tr>
                               </thead>
                               <tbody>
@@ -54,8 +52,6 @@
                                     <td><%=k.getReferencia() %></td>
                                     <td><%=k.getRefProd() %></td>
                                     <td><%=k.getUdProd()%></td>
-                                    <td><%=k.getRefMat()%></td>
-                                    <td><%=k.getUdMat()%></td>
                                  </tr>
                                  <%
                                     }

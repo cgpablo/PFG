@@ -8,10 +8,16 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.SessionFactory;
 import modelo.Clases.Kit;
+import modelo.Clases.KitMaterial;
+import modelo.Clases.KitProducto;
 import modelo.Clases.Material;
 import modelo.Clases.Pedido;
+import modelo.Clases.PedidoProducto;
+import modelo.Clases.PedidoKit;
 import modelo.Clases.Producto;
 import modelo.Clases.Usuario;
+import modelo.Clases.Rol;
+import modelo.Clases.RolUsuario;
 
 public class DAO implements IDAO {
 
@@ -33,7 +39,74 @@ public class DAO implements IDAO {
 	public SessionFactory getSessionFactory() {
 		return sessionFactory;
 	}
-	
+
+	public void añadirRol(Rol entity) {
+		// TODO Auto-generated method stub
+		SessionFactory factory = getSessionFactory();
+		Session session = factory.openSession();
+		Transaction tx = session.beginTransaction();
+		session.save(entity);
+		tx.commit();
+		session.close();
+	}
+
+	public Rol getRol(String rol) {
+		// TODO Auto-generated method stub
+		SessionFactory sesion = getSessionFactory();
+		Session session = sesion.openSession();
+		Rol Rol = null;
+		Transaction tx = session.beginTransaction();
+		Rol = (Rol) session.get(Rol.class, rol);
+		tx.commit();
+		session.close();
+		return Rol;
+	}
+
+	public boolean existsRol(String username) {
+		// TODO Auto-generated method stub
+		boolean exists = false;
+		if (getRol(username) != null) {
+			exists = true;
+		}
+		return exists;
+	}
+
+	public void modificarRol(Rol entity) {
+		// TODO Auto-generated method stub
+		SessionFactory sesion = getSessionFactory();
+		Session session = sesion.openSession();
+		Transaction tx = session.beginTransaction();
+		session.update(entity);
+		tx.commit();
+		session.close();
+	}
+
+	public void borrarRol(Rol entity) {
+		// TODO Auto-generated method stub
+		SessionFactory factory = getSessionFactory();
+		Session session = factory.openSession();
+		Transaction tx = session.beginTransaction();
+		session.delete(entity);
+		tx.commit();
+		session.close();
+	}
+
+	public List<Rol> getRoles() {
+		// TODO Auto-generated method stub
+		SessionFactory sesion = getSessionFactory();
+		Session session = sesion.openSession();
+		Transaction tx = session.beginTransaction();
+
+		Criteria criteria = session.createCriteria(Rol.class);
+		@SuppressWarnings("unchecked")
+		List<Rol> listaRoles = criteria.list();
+
+		tx.commit();
+		session.close();
+
+		return listaRoles;
+	}
+
 	public void añadirUsuario(Usuario entity) {
 		// TODO Auto-generated method stub
 		SessionFactory factory = getSessionFactory();
@@ -99,6 +172,71 @@ public class DAO implements IDAO {
 		session.close();
 
 		return listaUsuarios;
+	}
+
+	public void añadirRolUsuario(RolUsuario entity) {
+		// TODO Auto-generated method stub
+		SessionFactory factory = getSessionFactory();
+		Session session = factory.openSession();
+		Transaction tx = session.beginTransaction();
+		session.save(entity);
+		tx.commit();
+		session.close();
+	}
+
+	public RolUsuario getRolUsuario(String rol, String username) {
+		RolUsuario rolUsuario = null;
+		for (RolUsuario ru : getRolUsuarios()) {
+			if (ru.getUsername().equals(username)) {
+				rolUsuario = ru;
+			}
+		}
+		return rolUsuario;
+	}
+
+	public boolean existsRolUsuario(String rol, String username) {
+		// TODO Auto-generated method stub
+		boolean exists = false;
+		if (getRolUsuario(rol, username) != null) {
+			exists = true;
+		}
+		return exists;
+	}
+
+	public void modificarRolUsuario(RolUsuario entity) {
+		// TODO Auto-generated method stub
+		SessionFactory sesion = getSessionFactory();
+		Session session = sesion.openSession();
+		Transaction tx = session.beginTransaction();
+		session.update(entity);
+		tx.commit();
+		session.close();
+	}
+
+	public void borrarRolUsuario(RolUsuario entity) {
+		// TODO Auto-generated method stub
+		SessionFactory factory = getSessionFactory();
+		Session session = factory.openSession();
+		Transaction tx = session.beginTransaction();
+		session.delete(entity);
+		tx.commit();
+		session.close();
+	}
+
+	public List<RolUsuario> getRolUsuarios() {
+		// TODO Auto-generated method stub
+		SessionFactory sesion = getSessionFactory();
+		Session session = sesion.openSession();
+		Transaction tx = session.beginTransaction();
+
+		Criteria criteria = session.createCriteria(RolUsuario.class);
+		@SuppressWarnings("unchecked")
+		List<RolUsuario> listaRolUsuarios = criteria.list();
+
+		tx.commit();
+		session.close();
+
+		return listaRolUsuarios;
 	}
 
 	public void añadirProducto(Producto entity) {
@@ -293,6 +431,132 @@ public class DAO implements IDAO {
 		return listaKits;
 	}
 
+	public void añadirKitMaterial(KitMaterial entity) {
+		// TODO Auto-generated method stub
+		SessionFactory factory = getSessionFactory();
+		Session session = factory.openSession();
+		Transaction tx = session.beginTransaction();
+		session.save(entity);
+		tx.commit();
+		session.close();
+	}
+
+	public KitMaterial getKitMaterial(String refKit, String refMat) {
+		// TODO Auto-generated method stub
+		KitMaterial kitMaterial = null;
+		for (KitMaterial km : getKitMateriales()) {
+			if (km.getArticuloReferencia().equals(refMat)) {
+				kitMaterial = km;
+			}
+		}
+		return kitMaterial;
+	}
+
+	public boolean existsKitMaterial(String refKit, String refMat) {
+		// TODO Auto-generated method stub
+		boolean exists = false;
+		if (getKitMaterial(refKit, refMat) != null) {
+			exists = true;
+		}
+		return exists;
+	}
+
+	public void modificarKitMaterial(KitMaterial entity) {
+		// TODO Auto-generated method stub
+		SessionFactory sesion = getSessionFactory();
+		Session session = sesion.openSession();
+		Transaction tx = session.beginTransaction();
+		session.update(entity);
+		tx.commit();
+		session.close();
+	}
+
+	public void borrarKitMaterial(KitMaterial entity) {
+		// TODO Auto-generated method stub
+		SessionFactory factory = getSessionFactory();
+		Session session = factory.openSession();
+		Transaction tx = session.beginTransaction();
+		session.delete(entity);
+		tx.commit();
+		session.close();
+	}
+
+	public List<KitMaterial> getKitMateriales() {
+		// TODO Auto-generated method stub
+		SessionFactory sesion = getSessionFactory();
+		Session session = sesion.openSession();
+		Transaction tx = session.beginTransaction();
+		Criteria criteria = session.createCriteria(KitMaterial.class);
+		@SuppressWarnings("unchecked")
+		List<KitMaterial> listaKitMateriales = criteria.list();
+		tx.commit();
+		session.close();
+		return listaKitMateriales;
+	}
+
+	public void añadirKitProducto(KitProducto entity) {
+		// TODO Auto-generated method stub
+		SessionFactory factory = getSessionFactory();
+		Session session = factory.openSession();
+		Transaction tx = session.beginTransaction();
+		session.save(entity);
+		tx.commit();
+		session.close();
+	}
+
+	public KitProducto getKitProducto(String refKit, String refProd) {
+		// TODO Auto-generated method stub
+		KitProducto kitProducto = null;
+		for (KitProducto kp : getKitProductos()) {
+			if (kp.getProductoReferencia().equals(refProd)) {
+				kitProducto = kp;
+			}
+		}
+		return kitProducto;
+	}
+
+	public boolean existsKitProducto(String refKit, String refProd) {
+		// TODO Auto-generated method stub
+		boolean exists = false;
+		if (getKitProducto(refKit, refProd) != null) {
+			exists = true;
+		}
+		return exists;
+	}
+
+	public void modificarKitProducto(KitProducto entity) {
+		// TODO Auto-generated method stub
+		SessionFactory sesion = getSessionFactory();
+		Session session = sesion.openSession();
+		Transaction tx = session.beginTransaction();
+		session.update(entity);
+		tx.commit();
+		session.close();
+	}
+
+	public void borrarKitProducto(KitProducto entity) {
+		// TODO Auto-generated method stub
+		SessionFactory factory = getSessionFactory();
+		Session session = factory.openSession();
+		Transaction tx = session.beginTransaction();
+		session.delete(entity);
+		tx.commit();
+		session.close();
+	}
+
+	public List<KitProducto> getKitProductos() {
+		// TODO Auto-generated method stub
+		SessionFactory sesion = getSessionFactory();
+		Session session = sesion.openSession();
+		Transaction tx = session.beginTransaction();
+		Criteria criteria = session.createCriteria(KitMaterial.class);
+		@SuppressWarnings("unchecked")
+		List<KitProducto> listaKitProductos = criteria.list();
+		tx.commit();
+		session.close();
+		return listaKitProductos;
+	}
+
 	public void añadirPedido(Pedido entity) {
 		// TODO Auto-generated method stub
 		SessionFactory factory = getSessionFactory();
@@ -357,4 +621,129 @@ public class DAO implements IDAO {
 		return listaPedidos;
 	}
 
+	public void añadirPedidoProducto(PedidoProducto entity) {
+		// TODO Auto-generated method stub
+		SessionFactory factory = getSessionFactory();
+		Session session = factory.openSession();
+		Transaction tx = session.beginTransaction();
+		session.save(entity);
+		tx.commit();
+		session.close();
+	}
+
+	public PedidoProducto getPedidoProducto(String refPed, String refProd) {
+		// TODO Auto-generated method stub
+		PedidoProducto pedidoProducto = null;
+		for(PedidoProducto pp: getPedidoProductos()) {
+			if(pp.getProductoReferencia().equals(refProd)) {
+				pedidoProducto = pp;
+			}
+		}
+		return pedidoProducto;
+	}
+
+	public boolean existsPedidoProducto(String refPed, String refProd) {
+		// TODO Auto-generated method stub
+		boolean exists = false;
+		if (getPedidoProducto(refPed, refProd) != null) {
+			exists = true;
+		}
+		return exists;
+	}
+
+	public void modificarPedidoProducto(PedidoProducto entity) {
+		// TODO Auto-generated method stub
+		SessionFactory sesion = getSessionFactory();
+		Session session = sesion.openSession();
+		Transaction tx = session.beginTransaction();
+		session.update(entity);
+		tx.commit();
+		session.close();
+	}
+
+	public void borrarPedidoProducto(PedidoProducto entity) {
+		// TODO Auto-generated method stub
+		SessionFactory factory = getSessionFactory();
+		Session session = factory.openSession();
+		Transaction tx = session.beginTransaction();
+		session.delete(entity);
+		tx.commit();
+		session.close();
+	}
+
+	public List<PedidoProducto> getPedidoProductos() {
+		// TODO Auto-generated method stub
+		SessionFactory sesion = getSessionFactory();
+		Session session = sesion.openSession();
+		Transaction tx = session.beginTransaction();
+		Criteria criteria = session.createCriteria(PedidoProducto.class);
+		@SuppressWarnings("unchecked")
+		List<PedidoProducto> listaPedidoProductos = criteria.list();
+		tx.commit();
+		session.close();
+		return listaPedidoProductos;
+	}
+	
+	public void añadirPedidoKit(PedidoKit entity) {
+		// TODO Auto-generated method stub
+		SessionFactory factory = getSessionFactory();
+		Session session = factory.openSession();
+		Transaction tx = session.beginTransaction();
+		session.save(entity);
+		tx.commit();
+		session.close();
+	}
+
+	public PedidoKit getPedidoKit(String refPed, String refKit) {
+		// TODO Auto-generated method stub
+		PedidoKit pedidoKit = null;
+		for(PedidoKit pk: getPedidoKits()) {
+			if(pk.getReferenciaKit().equals(refKit)) {
+				pedidoKit = pk;
+			}
+		}
+		return pedidoKit;
+	}
+
+	public boolean existsPedidoKit(String refPed, String refKit) {
+		// TODO Auto-generated method stub
+		boolean exists = false;
+		if (getPedidoKit(refPed, refKit) != null) {
+			exists = true;
+		}
+		return exists;
+	}
+
+	public void modificarPedidoKit(PedidoKit entity) {
+		// TODO Auto-generated method stub
+		SessionFactory sesion = getSessionFactory();
+		Session session = sesion.openSession();
+		Transaction tx = session.beginTransaction();
+		session.update(entity);
+		tx.commit();
+		session.close();
+	}
+
+	public void borrarPedidoKit(PedidoKit entity) {
+		// TODO Auto-generated method stub
+		SessionFactory factory = getSessionFactory();
+		Session session = factory.openSession();
+		Transaction tx = session.beginTransaction();
+		session.delete(entity);
+		tx.commit();
+		session.close();
+	}
+
+	public List<PedidoKit> getPedidoKits() {
+		// TODO Auto-generated method stub
+		SessionFactory sesion = getSessionFactory();
+		Session session = sesion.openSession();
+		Transaction tx = session.beginTransaction();
+		Criteria criteria = session.createCriteria(PedidoKit.class);
+		@SuppressWarnings("unchecked")
+		List<PedidoKit> listaPedidoKits = criteria.list();
+		tx.commit();
+		session.close();
+		return listaPedidoKits;
+	}
 }

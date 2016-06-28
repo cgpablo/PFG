@@ -18,8 +18,6 @@ public class ModificarKit extends HttpServlet {
 	private String refKit;
 	private String refProd;
 	private String prod;
-	private String refMat;
-	private String mat;
 	private String mensaje;
 	
     /**
@@ -46,23 +44,21 @@ public class ModificarKit extends HttpServlet {
 		refKit = request.getParameter("refKit");
 		refProd = request.getParameter("refProd");
 		prod = request.getParameter("prod");
-		refMat = request.getParameter("refMat");
-		mat = request.getParameter("mat");
 		
 		if(checkForm(request, response)) {
 			if(ApplicationService.getInstance().existsKit(refKit) == true) {
-				ApplicationService.getInstance().modificarKit(refKit, refProd, prod, refMat, mat);
+				ApplicationService.getInstance().modificarKit(refKit, refProd, prod);
 				request.getRequestDispatcher("/pages/main.jsp").forward(request, response);
 			} else {
 				mensaje = ApplicationService.getInstance().noExisteKitException();
 				request.getSession().setAttribute("mensaje", mensaje);
-				request.getRequestDispatcher("/pages/addKit").forward(request, response);
+				request.getRequestDispatcher("/pages/LoadAddKit").forward(request, response);
 			}
 		}
 	}
 	
 	private boolean checkForm(HttpServletRequest request, HttpServletResponse response) {
-		if ((refProd.equals("")) || (prod.equals("")) || (refMat.equals("")) || (mat.equals(""))) {
+		if ((refProd.equals("")) || (prod.equals(""))) {
 			mensaje = "Faltan campos";
 			return false;
 		} else {

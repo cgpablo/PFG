@@ -1,13 +1,17 @@
 package modelo.Datos;
 
 public class Connect {
-	private IDAO iDao = null;
+	
+	public static IDAO iDao = null;
 
 	public Connect() {
-		iDao = new DAO();
+		
 	}
 
-	public IDAO getIDao() {
-		return this.iDao;
+	public static synchronized IDAO getIDao() {
+		if(iDao == null){
+			iDao = new DAO();
+		}
+		return iDao;
 	}
 }

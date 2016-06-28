@@ -33,9 +33,10 @@ public class LoadAddKit extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		List <Material> materiales = ApplicationService.getInstance().getMateriales();
-		request.setAttribute("materiales", materiales);
-		List <Producto> productos = ApplicationService.getInstance().getProductos();
+//		List <Material> materiales = ApplicationService.getInstance().getMateriales();
+//		request.setAttribute("materiales", materiales);
+//		List <Producto> productos = ApplicationService.getInstance().getProductos();
+		List <String> productos = ApplicationService.getInstance().getListaEleccionKit(); 
 		request.setAttribute("productos", productos);
 		request.getRequestDispatcher("/pages/addKit.jsp").forward(request, response);
 	}

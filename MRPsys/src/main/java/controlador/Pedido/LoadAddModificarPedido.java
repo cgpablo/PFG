@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import modelo.Clases.Pedido;
-import modelo.Clases.Producto;
 import modelo.Negocio.ApplicationService;
 
 /**
@@ -36,7 +35,7 @@ public class LoadAddModificarPedido extends HttpServlet {
 		referencia = request.getParameter("referencia");
 		Pedido pedido = ApplicationService.getInstance().getPedido(referencia);
 		request.setAttribute("pedido", pedido);
-		List <String> productos = ApplicationService.getInstance().getListaEleccion();
+		List <String> productos = ApplicationService.getInstance().getListaEleccionPedido();
 		request.setAttribute("productos", productos);
 		request.getRequestDispatcher("/pages/ModificarPedido.jsp").forward(request, response);
 	}

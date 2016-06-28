@@ -10,9 +10,15 @@
    <property name="hibernate.connection.username">root</property>
    <property name="hibernate.connection.password"></property>
    <mapping class="modelo.Clases.Kit"/>
+   <mapping class="modelo.Clases.KitMaterial"/>
+   <mapping class="modelo.Clases.KitProducto"/>
    <mapping class="modelo.Clases.Material"/>
    <mapping class="modelo.Clases.Pedido"/>
+   <mapping class="modelo.Clases.PedidoProducto"/>
+   <mapping class="modelo.Clases.PedidoKit"/>
    <mapping class="modelo.Clases.Producto"/>
    <mapping class="modelo.Clases.Usuario"/>
+   <mapping class="modelo.Clases.Rol"/>
+   <mapping class="modelo.Clases.RolUsuario"/>
 </session-factory>
 </hibernate-configuration>

@@ -1,9 +1,8 @@
 package modelo.Negocio;
 
-import modelo.Datos.*;
 import java.util.List;
 import modelo.Clases.*;
-
+import modelo.Datos.Connect;
 import java.security.MessageDigest;
 import java.util.Arrays;
 import javax.crypto.Cipher;
@@ -14,12 +13,13 @@ import org.apache.commons.codec.binary.Base64;
 
 public class GestorUsuario {
 	
-	Connect con = new Connect();
 	
 	public void addUsuario(String username, String mail, String password) {
 		if(existsUsuario(username) == false) {
 			Usuario u = new Usuario(username, mail, password);
-			con.getIDao().añadirUsuario(u);
+			RolUsuario ru = new RolUsuario(username, "Admin");
+			Connect.getIDao().añadirUsuario(u);
+			Connect.getIDao().añadirRolUsuario(ru);
 		} else {
 			existeUsuarioException();
 		}
@@ -27,29 +27,29 @@ public class GestorUsuario {
 	
 	public boolean existsUsuario(String username) {
 		boolean existe;
-		existe = con.getIDao().existsUsuario(username);
+		existe = Connect.getIDao().existsUsuario(username);
 		return existe;
 	}
 	
 	public Usuario getUsuario(String username) {
-		Usuario u = con.getIDao().getUsuario(username);
+		Usuario u = Connect.getIDao().getUsuario(username);
 		return u;
 	}
 	
 	public void borrarUsuario(String username) {
 		Usuario u = getUsuario(username);
-		con.getIDao().borrarUsuario(u);
+		Connect.getIDao().borrarUsuario(u);
 	}
 	
 	public void modificarUsuario(String username, String mail, String password) {
 		Usuario u = getUsuario(username);
 		u.setMail(mail);
 		u.setPassword(password);
-		con.getIDao().modificarUsuario(u);
+		Connect.getIDao().modificarUsuario(u);
 	}
 	
 	public List<Usuario> getUsuarios() {
-		List <Usuario> lista = con.getIDao().getUsuarios();
+		List <Usuario> lista = Connect.getIDao().getUsuarios();
 		return lista;
 	}
 	

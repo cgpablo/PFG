@@ -1,14 +1,10 @@
 package modelo.Negocio;
 
-import modelo.Datos.*;
-
+import modelo.Datos.Connect;
 import java.util.List;
-
 import modelo.Clases.*;
 
 public class GestorMaterial {
-
-	Connect con = new Connect();
 
 	public void addMaterial(String referencia, String nombre, String idioma, String elemento, String lead,
 			String seguridad, String virtual) {
@@ -19,7 +15,7 @@ public class GestorMaterial {
 		if (existsMaterial(referencia) == false) {
 			Material m = new Material(referencia, nombre, idioma, elemento, leadTime, stockReal, stockSeguridad,
 					stockVirtual);
-			con.getIDao().añadirMaterial(m);
+			Connect.getIDao().añadirMaterial(m);
 		} else {
 			existeMaterialException();
 		}
@@ -27,18 +23,18 @@ public class GestorMaterial {
 
 	public boolean existsMaterial(String referencia) {
 		boolean existe;
-		existe = con.getIDao().existsMaterial(referencia);
+		existe = Connect.getIDao().existsMaterial(referencia);
 		return existe;
 	}
 
 	public Material getMaterial(String referencia) {
-		Material m = con.getIDao().getMaterial(referencia);
+		Material m = Connect.getIDao().getMaterial(referencia);
 		return m;
 	}
 
 	public void borrarMaterial(String referencia) {
 		Material m = getMaterial(referencia);
-		con.getIDao().borrarMaterial(m);
+		Connect.getIDao().borrarMaterial(m);
 	}
 
 	public void modificarMaterial(String referencia, String nombre, String idioma, String elemento, String lead, String seguridad, String virtual) {
@@ -53,11 +49,11 @@ public class GestorMaterial {
 		m.setSeguridad(stockSeguridad);
 		m.setVirtual(stockVirtual);
 		m.setReal(calcularStockReal(stockSeguridad, stockVirtual));
-		con.getIDao().modificarMaterial(m);
+		Connect.getIDao().modificarMaterial(m);
 	}
 
 	public List<Material> getMateriales() {
-		List<Material> lista = con.getIDao().getMateriales();
+		List<Material> lista = Connect.getIDao().getMateriales();
 		return lista;
 	}
 

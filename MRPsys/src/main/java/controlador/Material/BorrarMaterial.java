@@ -53,7 +53,7 @@ public class BorrarMaterial extends HttpServlet {
 			List <Kit> kits = ApplicationService.getInstance().getKits();
 			
 			for(Kit k:kits) {
-				if(k.getRefMat().equals(referencia)) {
+				if(k.getRefProd().equals(referencia)) {
 					for(Pedido p: pedidos) {
 						if(p.getRefProd().equals(k.getReferencia())) {
 							ApplicationService.getInstance().borrarPedido(p.getReferenciaPedido());

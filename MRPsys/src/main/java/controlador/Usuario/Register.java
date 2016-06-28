@@ -44,13 +44,9 @@ public class Register extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		username = request.getParameter("username");
-		System.out.println(username);
 		mail = request.getParameter("mail");
-		System.out.println(mail);
 		password = request.getParameter("password");
-		System.out.println(password);
 		repeatPassword = request.getParameter("repeatPassword");
-		System.out.println(repeatPassword);
 		
 		if(checkForm(request, response)) {
 			if(ApplicationService.getInstance().existsUsuario(username) == false) {

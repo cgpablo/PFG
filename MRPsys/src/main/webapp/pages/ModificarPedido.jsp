@@ -18,7 +18,7 @@
          <div id="page-wrapper">
             <div class="row">
                <div class="col-lg-12">
-                  <h1 class="page-header" style="text-transform:uppercase; font-size:24px;">Añadir Pedido</h1>
+                  <h1 class="page-header" style="text-transform:uppercase; font-size:24px;">Modificar Pedido</h1>
                </div>
                <!-- /.col-lg-12 -->
             </div>

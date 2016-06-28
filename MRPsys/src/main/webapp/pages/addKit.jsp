@@ -42,36 +42,18 @@
                                     <label>Seleccionar referencia producto</label>
                                     <select class="form-control" name="refProd">
                                     <%
-                                    	List <Producto> productos = (List)request.getAttribute("productos");
-                                    	Producto p;
+                                    	List <String> productos = (List) request.getAttribute("productos");
+                                    	Object p;
                                     	for(int i=0; i<productos.size();i++) {
                                     	p = productos.get(i);
                                      %>
-                                     <option><%=p.getReferencia()%></option>
+                                     <option><%=p.toString()%></option>
                                        <%} %>
                                     </select>
                                  </div>
                                  <div class="form-group">
                                     <label>Unidades de producto requeridas</label>
                                     <input class="form-control" placeholder="Unidades" name="prod" type="text" autofocus>
-                                    <p class="help-block">Ej: 10</p>
-                                 </div>
-                                 <div class="form-group">
-                                    <label>Seleccionar referencia material</label>
-                                    <select class="form-control" name="refMat">
-                                    	<% 
-                                    		List <Material> materiales = (List) request.getAttribute("materiales");
-                                    		Material m;
-                                    		for(int i=0; i<materiales.size();i++) {
-                                    		m = materiales.get(i);
-                                    	%>
-                                       <option><%=m.getReferencia()%></option>
-                                       <%} %>
-                                    </select>
-                                 </div>
-                                 <div class="form-group">
-                                    <label>Unidades de material requeridas</label>
-                                    <input class="form-control" placeholder="Unidades" name="mat" type="text" autofocus>
                                     <p class="help-block">Ej: 10</p>
                                  </div>
                                  <button type="submit" class="btn btn-success">Añadir</button>

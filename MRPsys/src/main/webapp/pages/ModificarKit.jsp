@@ -46,37 +46,19 @@
                                     <label>Seleccionar referencia producto</label>
                                     <select class="form-control" name="refProd">
                                     <%
-                                    	List <Producto> productos = (List)request.getAttribute("productos");
-                                    	Producto p;
+                                    	List <String> productos = (List)request.getAttribute("productos");
+                                    	String p;
                                     	for(int i=0; i<productos.size();i++) {
                                     	p = productos.get(i);
                                      %>
-                                     <option><%=p.getReferencia()%></option>
+                                     <option><%=p.toString()%></option>
                                        <%} %>
                                     </select>
                                  </div>
                                  <div class="form-group">
                                     <label>Unidades de producto requeridas</label>
                                     <input class="form-control" placeholder="Unidades" name="prod" type="text" autofocus>
-                                 </div>
-                                 <div class="form-group">
-                                    <label>Seleccionar referencia material</label>
-                                    <select class="form-control" name="refMat">
-                                    	<% 
-                                    		List <Material> materiales = (List) request.getAttribute("materiales");
-                                    		Material m;
-                                    		for(int i=0; i<materiales.size();i++) {
-                                    		m = materiales.get(i);
-                                    	%>
-                                       <option><%=m.getReferencia()%></option>
-                                       <%} %>
-                                    </select>
-                                 </div>
-                                 <div class="form-group">
-                                    <label>Unidades de material requeridas</label>
-                                    <input class="form-control" placeholder="Unidades" name="mat" type="text" autofocus>
-                                 </div>
-                                 <button type="submit" class="btn btn-success">Añadir</button>
+                                 </div>                                 <button type="submit" class="btn btn-success">Añadir</button>
                                  <button type="reset" class="btn btn-primary">Reset</button>
                               </form>
                            </div>
@@ -92,16 +74,6 @@
                                  <div class="form-group">
                                     <label>Unidades de producto</label>
                                     <input class="form-control" id="disabledInput" disabled="" value="<%=k.getUdProd() %>" type="text" autofocus>
-                                 </div>
-                                 <div class="form-group">
-                                    <label>Referencia material</label>
-                                    <select class="form-control" id="disabledSelect" disabled="">
-                                     <option><%=k.getRefMat() %></option>
-                                    </select>
-                                 </div>
-                                 <div class="form-group">
-                                    <label>Unidades de material</label>
-                                    <input class="form-control" id="disabledInput" disabled="" value="<%=k.getUdMat()%>" type="text" autofocus>
                                  </div>
                            </div>
                            <!-- /.col-lg-6 (nested) -->

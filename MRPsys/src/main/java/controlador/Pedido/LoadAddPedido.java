@@ -30,7 +30,7 @@ public class LoadAddPedido extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		List <String> productos = ApplicationService.getInstance().getListaEleccion(); 
+		List <String> productos = ApplicationService.getInstance().getListaEleccionPedido(); 
 		request.setAttribute("productos", productos);
 		request.getRequestDispatcher("/pages/addPedido.jsp").forward(request, response);
 	}

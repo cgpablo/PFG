@@ -18,8 +18,8 @@ public class AddKit extends HttpServlet {
 	private String refKit;
 	private String refProd;
 	private String prod;
-	private String refMat;
-	private String mat;
+//	private String refMat;
+//	private String mat;
 	private String mensaje;
 
     /**
@@ -46,23 +46,24 @@ public class AddKit extends HttpServlet {
 		refKit = request.getParameter("refKit");
 		refProd = request.getParameter("refProd");
 		prod = request.getParameter("prod");
-		refMat = request.getParameter("refMat");
-		mat = request.getParameter("mat");
+//		refMat = request.getParameter("refMat");
+//		mat = request.getParameter("mat");
 		
 		if(checkForm(request, response)) {
+			System.out.println(ApplicationService.getInstance().existsKit(refKit));
 			if(ApplicationService.getInstance().existsKit(refKit) == false) {
-				ApplicationService.getInstance().nuevoKit(refKit, refProd, prod, refMat, mat);
+				ApplicationService.getInstance().nuevoKit(refKit, refProd, prod);
 				request.getRequestDispatcher("/pages/main.jsp").forward(request, response);
 			} else {
 				mensaje = ApplicationService.getInstance().existeKitException();
 				request.getSession().setAttribute("mensaje", mensaje);
-				request.getRequestDispatcher("/pages/addKit.jsp").forward(request, response);
+				request.getRequestDispatcher("/pages/LoadAddKit").forward(request, response);
 			}
 		}
 	}
 	
 	private boolean checkForm(HttpServletRequest request, HttpServletResponse response) {
-		if ((refKit.equals("")) || (refProd.equals("")) || (prod.equals("")) || (refMat.equals("")) || (mat.equals(""))) {
+		if ((refKit.equals("")) || (refProd.equals("")) || (prod.equals(""))) {
 			mensaje = "Faltan campos";
 			return false;
 		} else {
